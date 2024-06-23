@@ -25,7 +25,7 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 // Intialize URI without Auth
-$bypassURI = ["/ping", "/login"];
+$bypassURI = ["/ping", "/auth", "/register"];
 
 // Initialize the router
 $router = new Router();
@@ -35,7 +35,8 @@ $router->addMiddleware(new AuthMiddleware($bypassURI));
 
 // Register Route
 $router->addHandler("GET", "/ping", [new PingController(), 'ping']);
-$router->addHandler("POST", "/login", [new AuthController(), 'login']);
+$router->addHandler("POST", "/auth", [new AuthController(), 'auth']);
+$router->addHandler("POST", "/register", [new AuthController(), 'register']);
 $router->addHandler("POST", "/email", [new EmailController(), 'sendEmail']);
 
 // Run Router

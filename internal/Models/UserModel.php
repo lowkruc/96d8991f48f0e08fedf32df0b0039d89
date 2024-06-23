@@ -45,6 +45,29 @@ class UserModel extends Model
     }
 
     /**
+     * GetUserByUsernameAndPassword.
+     *
+     * This function to get user data by username and password.
+     *
+     * @param string $name     name
+     * @param string $username username
+     * @param string $password password
+     *
+     * @return bool
+     */
+    public function createUser(string $name, string $username, string $password)
+    {
+        $hashPassword = md5($password);
+        return $this->db->table($this->table)->insert(
+            array(
+                "name" => $name,
+                "username" => $username,
+                "password" => $hashPassword
+            )
+        );
+    }
+
+    /**
      * GetUserByUsername.
      *
      * This function to get user data by username.

@@ -49,7 +49,44 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function login()
+    public function register()
+    {
+        try {
+            $request = RequestParser::parseJsonRequestBody(false);
+            
+            $name = $request->name;
+            $username = $request->username;
+            $password = $request->password;
+
+            if ($username == "" || $password == "" || $name == "") {
+                return $this->sendBadRequest("username, name, or password must be filled");
+            }
+
+            $ok = $this->userModel->createUser(
+                $name,
+                $username,
+                $password
+            );
+            if (!$ok) {
+                return $this->sendError("error insert user");
+            }
+        
+        } catch (\Throwable $th) {
+            return $this->sendError($th);
+        }
+
+
+        $this->sendOk();
+    }
+
+    /**
+     * Handle POST login
+     *
+     * This function for user login to get access token
+     *
+     * @return void
+     */
+    public function auth()
     {
         try {
             $request = RequestParser::parseJsonRequestBody(false);
