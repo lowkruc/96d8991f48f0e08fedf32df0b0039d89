@@ -130,8 +130,8 @@ Before installation, make sure **PHP**, **Composer** and **Docker** is running w
 	```json
 	{ 
 		"recipient": "asemediatech@gmail.com",
-		"subject": "entahlah aku masih coba-coba",
-		"body": "aku mau tanya dong, ini kok jalan ya aneh" 
+		"subject": "xxxx",
+		"body": "xxxx" 
 	}
 	```
 - Response
