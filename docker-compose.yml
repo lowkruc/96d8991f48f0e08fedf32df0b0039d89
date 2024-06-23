@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    dns:
+      - 8.8.8.8
+    depends_on:
+      - postgres
+    command: ["sh", "-c", "apache2-foreground & /usr/local/bin/start-consumer.sh"]
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: levart_blastemail
+
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresql-data:/var/lib/postgresql/data
