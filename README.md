@@ -4,7 +4,7 @@ This repo was created for **Code Challenge Levart Software Engineer** by **Ahmad
 _Note: sorry in this project i don't use OAUTH2 and i use JWT, i need more time to build with requirment_
 
 ### Swimline Design System
-![Swimlime Design System](https://picsum.photos/200/300)
+![Swimlime Design System](https://raw.githubusercontent.com/lowkruc/96d8991f48f0e08fedf32df0b0039d89/main/swimline.png)
 
 ### Feature
 - User registration.
