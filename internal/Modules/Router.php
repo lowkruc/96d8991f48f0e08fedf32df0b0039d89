@@ -72,7 +72,8 @@ class Router
      *
      * This function to run middleware and route handler
      *
-     * @param string $path is path url from request.
+     * @param string $path   is path url from request.
+     * @param string $method is method to handler request.
      *
      * @return void
      */

@@ -48,13 +48,11 @@ class Database
      */
     public function __construct()
     {
-        $credential = parse_ini_file('database.ini');
-
         $dsn = sprintf(
             "pgsql:host=%s;port=%s;dbname=%s",
-            $credential["host"],
-            $credential["port"],
-            $credential["database"]
+            $_ENV["db_host"],
+            $_ENV["db_port"],
+            $_ENV["db_name"]
         );
 
         $options = [
@@ -66,8 +64,8 @@ class Database
         try {
             $this->conn = new PDO(
                 $dsn,
-                $credential['username'],
-                $credential['password'],
+                $_ENV['db_username'],
+                $_ENV['db_password'],
                 $options
             );
         } catch (PDOException $e) {

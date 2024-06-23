@@ -60,7 +60,9 @@ class EmailController extends Controller
             $body = $request->body;
 
             if ($recipient == "" || $subject == "" || $body == "") {
-                return $this->sendBadRequest("username or password and body must be filled");
+                return $this->sendBadRequest(
+                    "username or password and body must be filled"
+                );
             }
 
             $message[] =  array(
@@ -70,8 +72,8 @@ class EmailController extends Controller
             );
             $this->nsq->publish(
                 $message,
-                "tcp://nsq-service.asemedia.tech:4150",
-                "worker_mailer"
+                sprintf("tcp://%s:%s", $_ENV["nsq_host"], $_ENV["nsq_port"]),
+                $_ENV["nsq_topic_mailer"]
             );
         } catch (\Throwable $th) {
             return $this->sendError($th);

@@ -40,12 +40,12 @@ class Mailer
     {
         $this->mail = new PHPMailer(true);
         $this->mail->isSMTP();
-        $this->mail->Host = "smtp-relay.brevo.com";
+        $this->mail->Host = $_ENV["smtp_host"];
         $this->mail->SMTPAuth = true;
-        $this->mail->Username = '772cbe001@smtp-brevo.com';
-        $this->mail->Password = 'HMm724j6PaKsYvyI';
+        $this->mail->Username = $_ENV["smtp_username"];
+        $this->mail->Password = $_ENV["smtp_password"];
         $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $this->mail->Port = 587;
+        $this->mail->Port = $_ENV["smtp_port"];
     }
 
     /**
@@ -62,7 +62,10 @@ class Mailer
     public function send(string $recipient, string $subject, string $body): bool
     {
         try {
-            $this->mail->setFrom('asemediatech@gmail.com', 'Ahmad Saekoni');
+            $this->mail->setFrom(
+                $_ENV["smtp_sender_email"],
+                $_ENV["smtp_sender_name"]
+            );
             $this->mail->addAddress($recipient);
             $this->mail->isHTML(false);
             $this->mail->Subject = $subject;

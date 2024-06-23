@@ -19,6 +19,11 @@ use EmailBlast\Middlewares\AuthMiddleware;
 use EmailBlast\Modules\Router;
 use EmailBlast\Controllers\PingController;
 
+
+// Load ENV
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 // Intialize URI without Auth
 $bypassURI = ["/ping", "/login"];
 

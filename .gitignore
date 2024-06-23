@@ -15,3 +15,4 @@ Vagrantfile
 
 /postgresql-data
 /log
+.env

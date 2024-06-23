@@ -61,12 +61,17 @@ class AuthController extends Controller
                 return $this->sendBadRequest("username or password must be filled");
             }
 
-            $user = $this->userModel->getUserByUsernameAndPassword($username, $password);
+            $user = $this->userModel->getUserByUsernameAndPassword(
+                $username,
+                $password
+            );
             if (empty($user)) {
                 return $this->sendNotFound();
             }
 
-            $accessToken = JwtHelper::generateToken(array("username" => $user["username"]));
+            $accessToken = JwtHelper::generateToken(
+                array("username" => $user["username"])
+            );
         
         } catch (\Throwable $th) {
             return $this->sendError($th);

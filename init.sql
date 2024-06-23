@@ -27,13 +27,13 @@ CREATE TABLE IF NOT EXISTS emails (
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
-    username VARCHAR(255),
+    username VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255)
 );
 
 -- Insert default data user
 INSERT INTO users (name, username, password) VALUES
-('Ahmad Saekoni', 'ahmad', '0192023a7bbd73250516f069df18b500');
+('Ahmad Saekoni', 'ahmadsaekoni', '0192023a7bbd73250516f069df18b500');
 
 
 -- Grant permission to connect to levart_blastemail database

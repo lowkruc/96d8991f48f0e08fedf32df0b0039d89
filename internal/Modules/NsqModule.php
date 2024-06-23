@@ -35,21 +35,6 @@ use Monolog\Handler\StreamHandler;
  */
 class NsqModule
 {
-    protected $nsqdHost = "http://nsq-service.asemedia.tech:4151";
-    protected $consumers = [];
-
-    /**
-     * Construct NsqModule
-     *
-     * This function for construct NsqModule
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-
-    }
-
     /**
      * AddConsumer
      *

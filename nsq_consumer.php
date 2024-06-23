@@ -16,16 +16,17 @@ require_once __DIR__ . '/vendor/autoload.php';
 use EmailBlast\Consumers\MailerConsumer;
 use EmailBlast\Modules\NsqModule;
 
-// Intialize URI without Auth
-// $bypassURI = ["/ping", "/login"];
+// Load ENV
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 // initalize NsqModule
 $nsq = new NsqModule();
 
 // Register Nsq Consumer
 $nsq->addConsumer(
-    "tcp://nsq-service.asemedia.tech:4150",
-    "worker_mailer",
-    "php_mailer_handler",
+    sprintf("tcp://%s:%s", $_ENV["nsq_host"], $_ENV["nsq_port"]),
+    $_ENV["nsq_topic_mailer"],
+    $_ENV["nsq_channel_mailer_consumer"],
     [new MailerConsumer(), 'handle']
 );
