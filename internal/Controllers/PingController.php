@@ -49,7 +49,6 @@ class PingController extends Controller
      */
     public function ping()
     {
-        $this->nsq->publish(array("test" => "kampret keren"), "tcp://nsq-service.asemedia.tech:4150", "worker_mailer");
         $this->sendOkWithData(
             array(
                 "status" => "ok",
